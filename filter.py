@@ -2,7 +2,29 @@ from csv import DictReader;
 from os import walk;
 from shutil import copyfile;
 from configparser import ConfigParser
+import tkinter as tk
+
+def import_file():
+    file_path = tk.filedialog.askopenfilename(title="Select a file", filetypes=[("Text files", "*.txt"), ("All files", "*.*")])
+    if file_path:
+        # Process the selected file (you can replace this with your own logic)
+        print("Selected file:", file_path)
 def main():
+    #gui setup
+    window = tk.Tk(
+        screenName = None,
+        baseName = None,
+        className = 'Scholar image filter',
+        useTk = 1
+    )
+ 
+    # Create an "Import File" button
+    import_button = tk.Button(window, text="Import File", command=import_file)
+    import_button.pack(pady=100)
+    # the window is running now
+    window.mainloop()
+
+    #config setup
     config = ConfigParser()
     config.read("config.ini")
     # CSV Filter config
