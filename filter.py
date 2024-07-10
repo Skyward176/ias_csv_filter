@@ -3,12 +3,14 @@ from os import walk;
 from shutil import copyfile;
 from configparser import ConfigParser
 import tkinter as tk
+from tkinter import filedialog
 
-def import_file():
-    file_path = tk.filedialog.askopenfilename(title="Select a file", filetypes=[("Text files", "*.txt"), ("All files", "*.*")])
+def import_file(path):
+    file_path = filedialog.askopenfilename(title="Select a file", filetypes=[("Text files", "*.txt"), ("All files", "*.*")])
     if file_path:
         # Process the selected file (you can replace this with your own logic)
         print("Selected file:", file_path)
+        path = file_path
 def main():
     #gui setup
     window = tk.Tk(
@@ -19,10 +21,12 @@ def main():
     )
  
     # Create an "Import File" button
-    import_button = tk.Button(window, text="Import File", command=import_file)
+    selected_csv = ""
+    import_button = tk.Button(window, text="Import CSV", command=import_file(selected_csv))
     import_button.pack(pady=100)
     # the window is running now
     window.mainloop()
+    print(selected_csv)
 
     #config setup
     config = ConfigParser()
